@@ -11,14 +11,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'StatusBar',
-    computed: {
-        doneTodos () {
-            return this.$store.state.todos.filter(todo => todo.completed)
-        }
-    }
+    computed: mapGetters(['doneTodos'])
 }
 </script>
 

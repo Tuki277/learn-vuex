@@ -13,6 +13,14 @@ const storeData = {
         auth: {
             isAuthenticated: true
         }
+    },
+    //ham tinh toan
+    getters: {
+        doneTodos: state => state.todos.filter(todo => todo.completed),
+        progress: (state, getter) => {
+            const doneTodos = getter.doneTodos
+            return Math.round( ( doneTodos.length / state.todos.length) * 100)
+        }
     }
 }
 
