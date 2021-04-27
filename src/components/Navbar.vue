@@ -6,19 +6,21 @@
       <li>About</li>
         <li v-if="auth.isAuthenticated">
           Total todos: {{ todos.length }}
-          <button>Logout</button>
+          <button @click="toggle_auth">Logout</button>
         </li>
-        <li v-else>Login</li>
+        <button v-else @click="toggle_auth">Login</button>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "Navbar",
   computed: mapState(["todos", "auth"]),
+  methods: mapMutations(['toggle_auth'])
 };
 </script>
 

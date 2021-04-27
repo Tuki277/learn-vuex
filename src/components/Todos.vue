@@ -1,7 +1,16 @@
 <template>
   <ul v-if="auth.isAuthenticated">
-    <li v-for="todo in todos" :key="todo.id">
+    <li 
+		v-for="todo in todos" 
+		:key="todo.id" 
+		:class="todo.completed ? 'completed' : '' ">
       {{ todo.title }}
+
+		<input type="checkbox" 
+			:checked="todo.completed"
+			@change="task_complete(todo.id)"
+		/>
+
     </li>
   </ul>
   <p v-else style="text-align; center">NOT LOGIN</p>
@@ -9,11 +18,12 @@
 
 <script>
 
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: "Todos",
-  computed: mapState(['todos', 'auth'])
+  computed: mapState(['todos', 'auth']),
+  methods: mapMutations(['task_complete'])
 }
 </script>
 
