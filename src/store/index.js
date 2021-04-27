@@ -21,6 +21,20 @@ const storeData = {
             const doneTodos = getter.doneTodos
             return Math.round( ( doneTodos.length / state.todos.length) * 100)
         }
+    },
+    //thay doi state
+    mutations: {
+        toggle_auth (state) {
+            state.auth.isAuthenticated = !state.auth.isAuthenticated
+        },
+        task_complete (state, todoID) {
+            state.todos.map(todo => {
+                if ( todo === todoID ) {
+                    todo.completed = !todo.completed
+                    return todo
+                }
+            })
+        }
     }
 }
 
